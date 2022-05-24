@@ -1,0 +1,26 @@
+<%- include('../partials/header.ejs')%>
+    <script type="text/javascript" src="/javscript/enableButton.js"></script>
+    <main class="container-fluid">
+        <div class="row justify-content-center p-5">
+            <div class="col-sm-6">
+                <div class="card justify-content-center p-5 border-info">
+                    <h4 class="text-center">Select your product to trade:</h4> <br>
+                    <div class="d-flex justify-content-center">
+                        <form action="/trades/<%=productId%>/tradeHistory" method='POST'>
+                            <% products.forEach(product=> {%>
+                                <input type="radio" name="products" value="<%= product._id%>" class=""
+                                    onclick="enable()">
+                                <%= product.title%>
+                                    </input>
+                                    <br>
+                                    <%})%>
+                                        <br>
+                                        <input class="btn btn-danger mt-3" id="tradeitBtn" type="submit"
+                                            value="Trade it" disabled>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs')%>

@@ -1,0 +1,28 @@
+<%- include('../partials/header.ejs')%>
+  <main class="container-fluid newTrade">
+    <div class="row justify-content-center p-5">
+      <div class="col-sm-6 justify-content-center">
+        <div class="card p-5 border-info">
+          <h4 class="text-center">New Trade</h4>
+          <form action="/trades" method='POST'>
+            <label>Category</label>
+            <input type="text" class="form-control mb-3" placeholder="Enter Category" name="Category" required />
+            <label>Category Image Url</label>
+            <input type="text" class="form-control mb-3" placeholder="Enter Category Image Url" name="Category_Img"
+              value="/images/manga.jpg" />
+            <label>Title</label>
+            <input type="text" class="form-control mb-3" placeholder="Enter title" name="title" required />
+            <label>Sub Title</label>
+            <input type="text" class="form-control mb-3" placeholder="Enter sub title" name="sub_title" required />
+            <label>Product Image Url</label>
+            <input type="text" class="form-control mb-3" placeholder="Enter Product Image Url" name="Product_Img"
+              value="/images/logo.png" />
+            <label>Description</label>
+            <textarea class="form-control" cols="30" rows="7" name="Desc"></textarea>
+            <input class="btn btn-primary mt-3" type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('../partials/footer.ejs')%>

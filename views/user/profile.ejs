@@ -1,0 +1,91 @@
+<%- include('../partials/header.ejs')%>
+    <main class="container-fluid profile">
+        <div class="row justify-content-center p-5">
+            <div class="col-sm-6 justify-content-center">
+                <div class="card p-5 border-info commoncard">
+                    <h4 class="text-center">Profile</h4>
+                    <div class="content">
+                        <h5>Welcome, <%=user.firstName%>
+                        </h5>
+                        <%if(stories.length){%>
+                            <p>You have added following items</p>
+                            <%stories.forEach(story=> {%>
+                                <a href='/trades/<%=story.id%>'>
+                                    <p>
+                                        <%= story.title%>
+                                    </p>
+                                </a>
+                                <%}); }else{%>
+                                    <p>You have not created any stories</p>
+                                    <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 justify-content-center">
+                <div class="card p-5 border-info commoncard">
+                    <h4 class="text-center">Watchlist</h4>
+                    <div class="content">
+                        <%if(result.length>0){%>
+                            <p>Products added in watchlist:</p>
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Owner</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <%result.forEach(story=> {%>
+                                    <tr>
+                                        <td>
+                                            <a href='/trades/<%=story._id%>'>
+                                                <p>
+                                                    <%= story.title%>
+                                                </p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <%=story.author_name%>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <%=story.status%>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <form action="/users/<%=story._id%>/unwatch" method='POST'>
+                                                <input class="btn btn-danger" id="unWatch" type="submit"
+                                                    value="unWatch">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <%});%>
+                            </table>
+                            <%}else{%>
+                                <p>You have not added any product to watchlist</p>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center p-5">
+            <div class="col-sm-4 justify-content-center">
+                <a href="/trades/tradeHistory">
+                    <div class="card p-5 border-info commoncard">
+                        <h4 class="text-center">Trade History</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 justify-content-center">
+                <a href="/trades/tradeOffers">
+                    <div class="card p-5 border-info commoncard">
+                        <h4 class="text-center">Trade Offers</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs')%>

@@ -1,0 +1,47 @@
+<%- include('../partials/header.ejs')%>
+
+  <main class="container-fluid">
+    <div class="row pt-1">
+      <div class="col-sm-7 text-right title">
+        <h5 class="pr-5 mr-5">Categories</h5>
+      </div>
+      <div class="col-sm-4 mt-3 text-center">
+        <%if(user){%>
+          <form>
+            <button class="btn btn-danger" type="submit" formmethod="GET" formaction="/trades/deleteCat">
+              Delete Category</button>
+          </form>
+          <%}%>
+      </div>
+    </div>
+    <div class="row">
+      <%if(stories.length>0){%>
+        <%stories.forEach(cat=>{%>
+          <div class="col-sm-4">
+            <div class="card-col">
+              <div class="card category">
+
+                <img class="card-img img-responsive" src="<%=cat.bgImg%>" alt="Card image" />
+                <div class="card-img-overlay">
+                  <h3 class="card-title">
+                    <%=cat.catName%>:
+                  </h3>
+                  <ul>
+                    <% cat.products.forEach(product=>{%>
+                      <li>
+                        <h5><a href="/trades/<%=product._id%>">
+                            <%=product.title%>
+                          </a></h5>
+                      </li>
+                      <%});%>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%});%>
+            <%}%>
+    </div>
+  </main>
+
+  <%- include('../partials/footer.ejs')%>
